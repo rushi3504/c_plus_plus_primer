@@ -6,6 +6,8 @@ int main()
     Sales_item total;
     if(std::cin >> total)
     {
+        for(int i = 0; i< 50; i++)
+        std::cout << "\a";
         Sales_item trans;
         while(std::cin >> trans)
         {
