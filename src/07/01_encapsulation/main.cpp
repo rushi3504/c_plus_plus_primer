@@ -1,17 +1,24 @@
 #include <iostream>
 #include <string>
 
-struct Sales_data
+class Sales_data   // when we use the class keyword then default access specifier is private, for struct its public
 {
+    // friend used to use this class private members in this functions
+    friend Sales_data add(Sales_data &lhs, Sales_data &rhs);
+    friend std::ostream &print(std::ostream&, const Sales_data&);
+    friend std::istream &read(std::istream&, Sales_data&);
+
+public:
     // constructors
     Sales_data() = default;
     Sales_data(const std::string &s) : bookNo(s) {}
     Sales_data(const std::string &s, unsigned n, double p) : bookNo(s), unit_sold(n), revenue(p*n) {}
     Sales_data(std::istream&);
-
     // othe members
     std::string isbn() const {return bookNo; }
     Sales_data& combine(const Sales_data&);
+
+private:
     double avg_price() const;
     std::string bookNo;
     unsigned int unit_sold = 0;
